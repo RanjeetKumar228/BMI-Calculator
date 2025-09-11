@@ -1,0 +1,78 @@
+:root{
+    --bg: #0f1724;
+    --card: linear-gradient(135deg,#0b2540 0%, #183651 100%);
+    --muted: #94a3b8;
+    --accent: #06b6d4;
+    --success: #16a34a;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+}
+
+*{box-sizing: border-box}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#071425 0%, #05203a 100%);color:#e6eef6}
+
+.container{
+    max-width:640px;
+    margin:40px auto;
+    padding:28px;
+    border-radius:14px;
+    background:var(--card);
+    box-shadow:0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+h1{font-size:28px;margin:0 0 12px;color:#eaf6ff}
+
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:end}
+
+label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+input[type="text"]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color: #e6eef6;font-weight:600}
+input::placeholder{color:rgba(230,238,246,0.55);font-weight:500}
+
+.controls{grid-column:1 / -1;display:flex;gap:12px;align-items:center}
+/* Primary calculate button - polished */
+button{grid-column:1 / -1;justify-self:center;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;min-width:170px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042027;font-weight:800;font-size:16px;letter-spacing:0.3px;cursor:pointer;box-shadow:0 10px 30px rgba(6,182,212,0.12), inset 0 -2px 8px rgba(255,255,255,0.03);transition:transform .22s cubic-bezier(.2,.9,.3,1),box-shadow .22s}
+button:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(6,182,212,0.2)}
+button:active{transform:translateY(-1px)}
+button:focus{outline:3px solid rgba(6,182,212,0.22);outline-offset:4px}
+
+#weight-guide{grid-column:1 / -1;background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;color:var(--muted);font-size:13px}
+
+/* Advanced BMI result badge */
+#result{flex:1;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 18px;border-radius:12px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,0.03)}
+
+/* Place the result under the button and center it */
+.result-wrapper{grid-column:1 / -1;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;margin-top:18px}
+
+#result .bmi-value{font-size:28px;font-weight:800;color:#e6f9ff;letter-spacing:0.4px}
+#result .bmi-desc{font-size:14px;color:var(--muted);margin-top:6px}
+
+/* Circular pill to show category with animation */
+.bmi-pill{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:900;color:#042027;transition:transform .28s,box-shadow .28s;margin:0 auto}
+.bmi-pill .val{font-size:20px}
+
+/* color states */
+.pill-under{background:linear-gradient(135deg,#c7f9ff,#60a5fa);box-shadow:0 8px 24px rgba(96,165,250,0.18);}
+.pill-normal{background:linear-gradient(135deg,#c6f6d5,#34d399);box-shadow:0 8px 24px rgba(52,211,153,0.14);}
+.pill-over{background:linear-gradient(135deg,#ffd6d6,#fb7185);box-shadow:0 8px 24px rgba(251,113,133,0.16);}
+
+/* subtle entrance animation */
+@keyframes popIn{from{transform:translateY(8px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+#result{transition:box-shadow .24s, transform .24s}
+#result,.bmi-pill{animation:popIn .32s ease both}
+
+/* emphasize result box on state change */
+.pill-under ~ #result, .pill-normal ~ #result, .pill-over ~ #result{transform:none}
+
+/* responsive */
+@media (max-width:520px){
+    form{grid-template-columns:1fr}
+    .controls{flex-direction:column;align-items:stretch}
+    button{width:100%;min-width:unset}
+    .bmi-pill{width:68px;height:68px}
+}
+
+/* accessibility: high contrast focus */
+input:focus,button:focus{outline:3px solid rgba(6,182,212,0.16);outline-offset:2px}
+
+/* small helper */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
