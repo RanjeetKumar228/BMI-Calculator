@@ -46,6 +46,8 @@ bmi-calculator/
 
 └── README.md
 
+- Visit [BMI-Calculator](https://ranjeetkumar228.github.io/BMI-Calculator/)
+
 ## 🔮 Future Enhancements
 Add unit converter (kg ↔ lbs, cm ↔ ft/inch)
 
